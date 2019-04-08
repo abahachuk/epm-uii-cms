@@ -1,0 +1,45 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "location",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "bg": {
+      "default": "",
+      "type": "string"
+    },
+    "city": {
+      "default": "",
+      "type": "string"
+    },
+    "address1": {
+      "default": "",
+      "type": "string"
+    },
+    "address2": {
+      "default": "",
+      "type": "string"
+    },
+    "country": {
+      "default": "",
+      "type": "string"
+    },
+    "phone": {
+      "default": "",
+      "type": "string"
+    },
+    "fax": {
+      "default": "",
+      "type": "string"
+    },
+    "footer": {
+      "model": "footer",
+      "via": "locations"
+    }
+  }
+}

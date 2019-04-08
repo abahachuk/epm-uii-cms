@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "navigation",
+  "info": {
+    "name": "navigation",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "links": {
+      "collection": "link",
+      "via": "navigation"
+    },
+    "name": {
+      "default": "",
+      "type": "string"
+    },
+    "undefined": {
+      "collection": "footer",
+      "via": "navigation"
+    }
+  }
+}

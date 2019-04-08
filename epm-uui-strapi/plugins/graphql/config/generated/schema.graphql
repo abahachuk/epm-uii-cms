@@ -1,0 +1,851 @@
+input createFooterInput {
+  data: FooterInput
+}
+
+type createFooterPayload {
+  footer: Footer
+}
+
+input createLinkInput {
+  data: LinkInput
+}
+
+type createLinkPayload {
+  link: Link
+}
+
+input createLocationInput {
+  data: LocationInput
+}
+
+type createLocationPayload {
+  location: Location
+}
+
+input createNavigationInput {
+  data: NavigationInput
+}
+
+type createNavigationPayload {
+  navigation: Navigation
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteFooterInput {
+  where: InputID
+}
+
+type deleteFooterPayload {
+  footer: Footer
+}
+
+input deleteLinkInput {
+  where: InputID
+}
+
+type deleteLinkPayload {
+  link: Link
+}
+
+input deleteLocationInput {
+  where: InputID
+}
+
+type deleteLocationPayload {
+  location: Location
+}
+
+input deleteNavigationInput {
+  where: InputID
+}
+
+type deleteNavigationPayload {
+  navigation: Navigation
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input editFileInput {
+  name: String
+  hash: String
+  sha256: String
+  ext: String
+  mime: String
+  size: String
+  url: String
+  provider: String
+  public_id: String
+  related: [ID]
+}
+
+input editFooterInput {
+  navigation: ID
+  locations: [ID]
+  instagram: [ID]
+  name: String
+  video: ID
+}
+
+input editLinkInput {
+  label: String
+  url: String
+  navigation: ID
+}
+
+input editLocationInput {
+  bg: String
+  city: String
+  address1: String
+  address2: String
+  country: String
+  phone: String
+  fax: String
+  footer: ID
+}
+
+input editNavigationInput {
+  links: [ID]
+  name: String
+  undefined: [ID]
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related: [ID]
+}
+
+type Footer {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  navigation: Navigation
+  name: String
+  video: UploadFile
+  locations(sort: String, limit: Int, start: Int, where: JSON): [Location]
+  instagram(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type FooterAggregator {
+  count: Int
+}
+
+type FooterConnection {
+  values: [Footer]
+  groupBy: FooterGroupBy
+  aggregate: FooterAggregator
+}
+
+type FooterConnection_id {
+  key: ID
+  connection: FooterConnection
+}
+
+type FooterConnectionCreatedAt {
+  key: DateTime
+  connection: FooterConnection
+}
+
+type FooterConnectionName {
+  key: String
+  connection: FooterConnection
+}
+
+type FooterConnectionNavigation {
+  key: ID
+  connection: FooterConnection
+}
+
+type FooterConnectionUpdatedAt {
+  key: DateTime
+  connection: FooterConnection
+}
+
+type FooterConnectionVideo {
+  key: ID
+  connection: FooterConnection
+}
+
+type FooterGroupBy {
+  _id: [FooterConnection_id]
+  createdAt: [FooterConnectionCreatedAt]
+  updatedAt: [FooterConnectionUpdatedAt]
+  navigation: [FooterConnectionNavigation]
+  name: [FooterConnectionName]
+  video: [FooterConnectionVideo]
+}
+
+input FooterInput {
+  navigation: ID
+  locations: [ID]
+  instagram: [ID]
+  name: String
+  video: ID
+}
+
+input InputID {
+  id: ID!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Link {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  label: String
+  url: String
+  navigation: Navigation
+}
+
+type LinkAggregator {
+  count: Int
+}
+
+type LinkConnection {
+  values: [Link]
+  groupBy: LinkGroupBy
+  aggregate: LinkAggregator
+}
+
+type LinkConnection_id {
+  key: ID
+  connection: LinkConnection
+}
+
+type LinkConnectionCreatedAt {
+  key: DateTime
+  connection: LinkConnection
+}
+
+type LinkConnectionLabel {
+  key: String
+  connection: LinkConnection
+}
+
+type LinkConnectionNavigation {
+  key: ID
+  connection: LinkConnection
+}
+
+type LinkConnectionUpdatedAt {
+  key: DateTime
+  connection: LinkConnection
+}
+
+type LinkConnectionUrl {
+  key: String
+  connection: LinkConnection
+}
+
+type LinkGroupBy {
+  _id: [LinkConnection_id]
+  createdAt: [LinkConnectionCreatedAt]
+  updatedAt: [LinkConnectionUpdatedAt]
+  label: [LinkConnectionLabel]
+  url: [LinkConnectionUrl]
+  navigation: [LinkConnectionNavigation]
+}
+
+input LinkInput {
+  label: String
+  url: String
+  navigation: ID
+}
+
+type Location {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  bg: String
+  city: String
+  address1: String
+  address2: String
+  country: String
+  phone: String
+  fax: String
+  footer: Footer
+}
+
+type LocationAggregator {
+  count: Int
+}
+
+type LocationConnection {
+  values: [Location]
+  groupBy: LocationGroupBy
+  aggregate: LocationAggregator
+}
+
+type LocationConnection_id {
+  key: ID
+  connection: LocationConnection
+}
+
+type LocationConnectionAddress1 {
+  key: String
+  connection: LocationConnection
+}
+
+type LocationConnectionAddress2 {
+  key: String
+  connection: LocationConnection
+}
+
+type LocationConnectionBg {
+  key: String
+  connection: LocationConnection
+}
+
+type LocationConnectionCity {
+  key: String
+  connection: LocationConnection
+}
+
+type LocationConnectionCountry {
+  key: String
+  connection: LocationConnection
+}
+
+type LocationConnectionCreatedAt {
+  key: DateTime
+  connection: LocationConnection
+}
+
+type LocationConnectionFax {
+  key: String
+  connection: LocationConnection
+}
+
+type LocationConnectionFooter {
+  key: ID
+  connection: LocationConnection
+}
+
+type LocationConnectionPhone {
+  key: String
+  connection: LocationConnection
+}
+
+type LocationConnectionUpdatedAt {
+  key: DateTime
+  connection: LocationConnection
+}
+
+type LocationGroupBy {
+  _id: [LocationConnection_id]
+  createdAt: [LocationConnectionCreatedAt]
+  updatedAt: [LocationConnectionUpdatedAt]
+  bg: [LocationConnectionBg]
+  city: [LocationConnectionCity]
+  address1: [LocationConnectionAddress1]
+  address2: [LocationConnectionAddress2]
+  country: [LocationConnectionCountry]
+  phone: [LocationConnectionPhone]
+  fax: [LocationConnectionFax]
+  footer: [LocationConnectionFooter]
+}
+
+input LocationInput {
+  bg: String
+  city: String
+  address1: String
+  address2: String
+  country: String
+  phone: String
+  fax: String
+  footer: ID
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Footer | createFooterPayload | updateFooterPayload | deleteFooterPayload | FooterConnection | FooterAggregator | FooterGroupBy | FooterConnection_id | FooterConnectionCreatedAt | FooterConnectionUpdatedAt | FooterConnectionNavigation | FooterConnectionName | FooterConnectionVideo | Link | createLinkPayload | updateLinkPayload | deleteLinkPayload | LinkConnection | LinkAggregator | LinkGroupBy | LinkConnection_id | LinkConnectionCreatedAt | LinkConnectionUpdatedAt | LinkConnectionLabel | LinkConnectionUrl | LinkConnectionNavigation | Location | createLocationPayload | updateLocationPayload | deleteLocationPayload | LocationConnection | LocationAggregator | LocationGroupBy | LocationConnection_id | LocationConnectionCreatedAt | LocationConnectionUpdatedAt | LocationConnectionBg | LocationConnectionCity | LocationConnectionAddress1 | LocationConnectionAddress2 | LocationConnectionCountry | LocationConnectionPhone | LocationConnectionFax | LocationConnectionFooter | Navigation | createNavigationPayload | updateNavigationPayload | deleteNavigationPayload | NavigationConnection | NavigationAggregator | NavigationGroupBy | NavigationConnection_id | NavigationConnectionCreatedAt | NavigationConnectionUpdatedAt | NavigationConnectionName | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+
+type Mutation {
+  createFooter(input: createFooterInput): createFooterPayload
+  updateFooter(input: updateFooterInput): updateFooterPayload
+  deleteFooter(input: deleteFooterInput): deleteFooterPayload
+  createLink(input: createLinkInput): createLinkPayload
+  updateLink(input: updateLinkInput): updateLinkPayload
+  deleteLink(input: deleteLinkInput): deleteLinkPayload
+  createLocation(input: createLocationInput): createLocationPayload
+  updateLocation(input: updateLocationInput): updateLocationPayload
+  deleteLocation(input: deleteLocationInput): deleteLocationPayload
+  createNavigation(input: createNavigationInput): createNavigationPayload
+  updateNavigation(input: updateNavigationInput): updateNavigationPayload
+  deleteNavigation(input: deleteNavigationInput): deleteNavigationPayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+type Navigation {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  links(sort: String, limit: Int, start: Int, where: JSON): [Link]
+  undefined(sort: String, limit: Int, start: Int, where: JSON): [Footer]
+}
+
+type NavigationAggregator {
+  count: Int
+}
+
+type NavigationConnection {
+  values: [Navigation]
+  groupBy: NavigationGroupBy
+  aggregate: NavigationAggregator
+}
+
+type NavigationConnection_id {
+  key: ID
+  connection: NavigationConnection
+}
+
+type NavigationConnectionCreatedAt {
+  key: DateTime
+  connection: NavigationConnection
+}
+
+type NavigationConnectionName {
+  key: String
+  connection: NavigationConnection
+}
+
+type NavigationConnectionUpdatedAt {
+  key: DateTime
+  connection: NavigationConnection
+}
+
+type NavigationGroupBy {
+  _id: [NavigationConnection_id]
+  createdAt: [NavigationConnectionCreatedAt]
+  updatedAt: [NavigationConnectionUpdatedAt]
+  name: [NavigationConnectionName]
+}
+
+input NavigationInput {
+  links: [ID]
+  name: String
+  undefined: [ID]
+}
+
+type Query {
+  footer(id: ID!): Footer
+  footers(sort: String, limit: Int, start: Int, where: JSON): [Footer]
+  footersConnection(sort: String, limit: Int, start: Int, where: JSON): FooterConnection
+  link(id: ID!): Link
+  links(sort: String, limit: Int, start: Int, where: JSON): [Link]
+  linksConnection(sort: String, limit: Int, start: Int, where: JSON): LinkConnection
+  location(id: ID!): Location
+  locations(sort: String, limit: Int, start: Int, where: JSON): [Location]
+  locationsConnection(sort: String, limit: Int, start: Int, where: JSON): LocationConnection
+  navigation(id: ID!): Navigation
+  navigations(sort: String, limit: Int, start: Int, where: JSON): [Navigation]
+  navigationsConnection(sort: String, limit: Int, start: Int, where: JSON): NavigationConnection
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input updateFooterInput {
+  where: InputID
+  data: editFooterInput
+}
+
+type updateFooterPayload {
+  footer: Footer
+}
+
+input updateLinkInput {
+  where: InputID
+  data: editLinkInput
+}
+
+type updateLinkPayload {
+  link: Link
+}
+
+input updateLocationInput {
+  where: InputID
+  data: editLocationInput
+}
+
+type updateLocationPayload {
+  location: Location
+}
+
+input updateNavigationInput {
+  where: InputID
+  data: editNavigationInput
+}
+
+type updateNavigationPayload {
+  navigation: Navigation
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileAggregator {
+  count: Int
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPublic_id {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSha256 {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileGroupBy {
+  _id: [UploadFileConnection_id]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  name: [UploadFileConnectionName]
+  hash: [UploadFileConnectionHash]
+  sha256: [UploadFileConnectionSha256]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  provider: [UploadFileConnectionProvider]
+  public_id: [UploadFileConnectionPublic_id]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+}
+
+type UsersPermissionsMe {
+  _id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  _id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleGroupBy {
+  _id: [UsersPermissionsRoleConnection_id]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsUser {
+  _id: ID!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserGroupBy {
+  _id: [UsersPermissionsUserConnection_id]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}
